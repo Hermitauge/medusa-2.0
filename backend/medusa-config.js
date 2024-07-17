@@ -2,6 +2,21 @@ import { loadEnv, defineConfig } from '@medusajs/utils'
 
 loadEnv(process.env.NODE_ENV, process.cwd())
 
+const plugins = [
+  {
+    resolve: "@medusajs/admin",
+    /** @type {import('@medusajs/admin').PluginOptions} */
+    options: {
+      autoRebuild: true,
+      path: "/",
+      develop: {
+        open: process.env.OPEN_BROWSER !== "false",
+        port: ADMIN_APP_PORT,
+      },
+    },
+  }
+  ]
+
 module.exports = defineConfig({
   projectConfig: {
     databaseUrl: process.env.DATABASE_URL,
